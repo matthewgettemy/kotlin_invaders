@@ -13,11 +13,11 @@ class NewInvader(context: Context, row: Int, column: Int, screenX: Int, screenY:
         // Initialize the bitmaps
         bitmap1 = BitmapFactory.decodeResource(
             context.resources,
-            R.drawable.invader1)
+            R.drawable.invader1a)
 
         bitmap2 = BitmapFactory.decodeResource(
             context.resources,
-            R.drawable.invader2)
+            R.drawable.invader1b)
 
         // stretch the first bitmap to a size
         // appropriate for the screen resolution
