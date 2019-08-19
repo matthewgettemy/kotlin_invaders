@@ -29,7 +29,7 @@ class KotlinInvadersView(context: Context,
     private var playerShip: PlayerShip = PlayerShip(context, size.x, size.y)
 
     // Some Invaders
-    private val invaders = ArrayList<NewInvader>()
+    private val invaders = ArrayList<Invader>()
     private var numInvaders = 0
 
     // The player's shelters are built from bricks
@@ -81,16 +81,37 @@ class KotlinInvadersView(context: Context,
         numInvaders = 0
         for (column in 0..10) {
             for (row in 0..5) {
-                invaders.add(
-                    NewInvader(
-                        context,
-                        row,
-                        column,
-                        size.x,
-                        size.y
+                if (row.rem(3) == 0) {
+                    invaders.add(
+                        InvaderA(
+                            context,
+                            row,
+                            column,
+                            size.x,
+                            size.y
+                        )
                     )
-                )
-
+                } else if (row.rem(3) == 1) {
+                    invaders.add(
+                        InvaderB(
+                            context,
+                            row,
+                            column,
+                            size.x,
+                            size.y
+                        )
+                    )
+                } else {
+                    invaders.add(
+                        InvaderC(
+                            context,
+                            row,
+                            column,
+                            size.x,
+                            size.y
+                        )
+                    )
+                }
                 numInvaders++
 
 
@@ -366,12 +387,12 @@ class KotlinInvadersView(context: Context,
             for (invader in invaders) {
                 if (invader.isVisible) {
                     if (uhOrOh) {
-                        canvas.drawBitmap(Invader.bitmap1!!,
+                        canvas.drawBitmap(invader.bitmap1!!,
                             invader.position.left,
                             invader.position.top,
                             paint)
                     } else {
-                        canvas.drawBitmap(Invader.bitmap2!!,
+                        canvas.drawBitmap(invader.bitmap2!!,
                             invader.position.left,
                             invader.position.top,
                             paint)

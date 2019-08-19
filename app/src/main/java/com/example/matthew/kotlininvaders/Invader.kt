@@ -6,19 +6,80 @@ import android.graphics.RectF
 import java.util.*
 import android.graphics.BitmapFactory
 
-class NewInvader(context: Context, row: Int, column: Int, screenX: Int, screenY: Int) :
+class InvaderA(context: Context, row: Int, column: Int, screenX: Int, screenY: Int) :
     Invader(context, row, column, screenX, screenY)
 {
+    // Initialize the bitmaps
+    override var bitmap1 = BitmapFactory.decodeResource(
+    context.resources,
+    R.drawable.invader_1a)
+
+    override var bitmap2 = BitmapFactory.decodeResource(
+    context.resources,
+    R.drawable.invader_1b)
     init {
-        // Initialize the bitmaps
-        bitmap1 = BitmapFactory.decodeResource(
-            context.resources,
-            R.drawable.invader1a)
+        // stretch the first bitmap to a size
+        // appropriate for the screen resolution
+        bitmap1 = Bitmap.createScaledBitmap(
+            bitmap1!!,
+            (width.toInt()),
+            (height.toInt()),
+            false)
 
-        bitmap2 = BitmapFactory.decodeResource(
-            context.resources,
-            R.drawable.invader1b)
+        // stretch the second bitmap as well
+        bitmap2 = Bitmap.createScaledBitmap(
+            bitmap2!!,
+            (width.toInt()),
+            (height.toInt()),
+            false)
 
+        numberOfInvaders ++
+    }
+}
+
+class InvaderB(context: Context, row: Int, column: Int, screenX: Int, screenY: Int) :
+    Invader(context, row, column, screenX, screenY)
+{
+    // Initialize the bitmaps
+    override var bitmap1 = BitmapFactory.decodeResource(
+    context.resources,
+    R.drawable.invader_2a)
+
+    override var bitmap2 = BitmapFactory.decodeResource(
+    context.resources,
+    R.drawable.invader_2b)
+    init {
+        // stretch the first bitmap to a size
+        // appropriate for the screen resolution
+        bitmap1 = Bitmap.createScaledBitmap(
+            bitmap1!!,
+            (width.toInt()),
+            (height.toInt()),
+            false)
+
+        // stretch the second bitmap as well
+        bitmap2 = Bitmap.createScaledBitmap(
+            bitmap2!!,
+            (width.toInt()),
+            (height.toInt()),
+            false)
+
+        numberOfInvaders ++
+    }
+}
+
+class InvaderC(context: Context, row: Int, column: Int, screenX: Int, screenY: Int) :
+    Invader(context, row, column, screenX, screenY)
+{
+    // Initialize the bitmaps
+    override var bitmap1 = BitmapFactory.decodeResource(
+    context.resources,
+    R.drawable.invader_3a)
+
+    override var bitmap2 = BitmapFactory.decodeResource(
+    context.resources,
+    R.drawable.invader_3b)
+    init {
         // stretch the first bitmap to a size
         // appropriate for the screen resolution
         bitmap1 = Bitmap.createScaledBitmap(
@@ -62,11 +123,14 @@ open class Invader(context: Context, row: Int, column: Int, screenX: Int, screen
 
     var isVisible = true
 
-    companion object {
-        // The alien ship will be represented by a Bitmap
+    // The alien ship will be represented by a Bitmap
+    open var bitmap1: Bitmap? = null
+    open var bitmap2: Bitmap? = null
 
-        var bitmap1: Bitmap? = null
-        var bitmap2: Bitmap? = null
+    companion object {
+
+
+
 
         // keep track of the number of instances
         // that are active
